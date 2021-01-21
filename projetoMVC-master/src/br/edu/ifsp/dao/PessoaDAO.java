@@ -75,7 +75,7 @@ public class PessoaDAO {
 		Connection con = null;
 		PreparedStatement pStat = null;
 		String sql = "select * from pessoa where id = ?";
-		Pessoa pessoa = new Pessoa();
+		Pessoa pessoa = null; 
 		
 		try {
 			con = GerenciadorPool.getInstance().getConnection();
@@ -101,7 +101,17 @@ public class PessoaDAO {
 		return pessoa;		
 	}
 	
-	public void editarPessoaPorId(int id, Pessoa pessoa) {
+	public void consultarPessoaPorNome(String nome) {
+		
+		Connection con = null;
+		PreparedStatement pStat = null;
+		String sql = "select * from pessoa nome like %";
+		Pessoa pessoa = null; 
+		
+		
+	}
+	
+	public void editarPessoaPorId(Pessoa pessoa) {
 		
 		Connection con = null;
 		PreparedStatement pStat = null;
@@ -113,7 +123,7 @@ public class PessoaDAO {
 			
 			pStat.setString(1, pessoa.getNome());
 			pStat.setInt(2, pessoa.getIdade());
-			pStat.setInt(3, id);
+			pStat.setInt(3, pessoa.getId());
 			
 			pStat.executeUpdate();
 			
